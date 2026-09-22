@@ -120,9 +120,15 @@ void __init omap_ion_init(void)
 		omap4_ion_heap_nonsec_tiler_mem_size = 0;
 		omap4_ion_heap_tiler_mem_size = 0;
 	} else {
+#ifdef CONFIG_USE_AMAZON_DUCATI
+		omap4_ion_heap_secure_input_size = (SZ_1M * 10);
+		omap4_ion_heap_secure_output_wfdhdcp_size = (SZ_1M * 0);
+		omap4_ducati_heap_size = (SZ_1M * 105);
+#else
 		omap4_ion_heap_secure_input_size = (SZ_1M * 48);
 		omap4_ion_heap_secure_output_wfdhdcp_size = (SZ_1M * 16);
 		omap4_ducati_heap_size = (SZ_1M * 48);
+#endif
 #ifdef CONFIG_ION_OMAP_TILER_DYNAMIC_ALLOC
 		omap4_ion_heap_nonsec_tiler_mem_size = 0;
 		omap4_ion_heap_tiler_mem_size = 0;
